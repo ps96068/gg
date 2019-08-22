@@ -1,0 +1,72 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<div class="container">
+
+<form method="GET" action='' style="text-align:left">
+  <input type="text" name="q" placeholder="Cauta" value="{{request.GET.q}}"/>
+  <input type="submit" value="Search"></input>
+</form>
+</div>
+<h1 class="display-4" style="text-align:center;">Toata lista</h1>
+<div class="container">
+  <div class="">
+    <table class="table table-striped">
+      <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nume</th>
+      <th scope="col">Telefon</th>
+      <th scope="col" >Comanda</th>
+      <th scope="col" colspan="3">Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for object in objects_list%}
+    <tr>
+      <th scope="row">{{object.id}}</th>
+      <td><a href='{% url "lista:detail" pk=object.pk %}'>{{object.name}}</a></td>
+      <td>{{object.phone}}</td>
+      <td>{{object.content}}</td>
+      <td>{{object.created_on}}</td>
+
+      <td>
+        <a href='{% url "lista:update" pk=object.pk %}'><button type="button" class="btn btn-primary btn-sm">Redacteaza</button></a>
+      </td>
+      <td>
+        <a href='{% url "lista:delete" pk=object.pk %}'><button type="button" class="btn btn-danger btn-sm">Sterge</button></a>
+      </td>
+    </tr>
+    {%endfor%}
+    </tbody>
+    </table>
+
+<nav aria-label="Page navigation example">
+
+              {% if objects_list.has_other_pages %}
+                <ul class="pagination">
+                  {% if objects_list.has_previous %}
+                    <li class="page-item"><a href="?page={{ objects_list.previous_page_number }}" class="page-link" aria-label="Previous">&laquo;</a></li>
+                  {% else %}
+                    <li class="disabled page-item"  aria-label="Previous"><span class="page-link">&laquo;</span></li>
+                  {% endif %}
+                  {% for i in objects_list.paginator.page_range %}
+                    {% if objects_list.number == i %}
+                      <li class="active page-item"><span class="page-link">{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                      <li class="page-item"><a href="?page={{ i }}" class="page-link">{{ i }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if objects_list.has_next %}
+                    <li class="page-item"><a href="?page={{ objects_list.next_page_number }}" class="page-link" aria-label="Next">&raquo;</a></li>
+                  {% else %}
+                    <li class="disabled page-item" aria-label="Next" ><span class="page-link">&raquo;</span></li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+
+</nav>
+  </div>
+</div>
+
+{%endblock%}

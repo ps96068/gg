@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%block content%}
+<div class="row">
+  <div class="col-md-6">
+      ID: {{object.id}}<br>
+      Nume: {{object.name}}<br>
+      Telefon: {{object.phone}}<br>
+      Comanda: {{object.content}}<br>
+      Data: {{object.created_on}}<br>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <a href='{% url "lista:home" %}'>
+      <button type="button" class="btn btn-primary">Inapoi la lista</button>
+    </a>
+
+  </div>
+
+</div>
+
+
+
+{%endblock%}

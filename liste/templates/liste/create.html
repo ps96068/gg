@@ -1,0 +1,30 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<h1 class="display-4" >Adaugam in lista</h1>
+<form action="" method="post"">{%csrf_token%}
+<div class="form-row">
+  <div class="col-md-5 mb-2">
+    {{ form.name}}
+  </div>
+  <div class="col-md-3 mb-2">
+    {{ form.phone }}
+  </div>
+</div>
+<div class="form-row">
+  <div class="col-md-8 mb-3">
+    {{ form.content }}
+  </div>
+</div>
+<div class="form-row">
+  <div class="col">
+    {{ form.created_on }}
+  </div>
+</div>
+
+
+  <button class="btn btn-primary my-4" type="submit">Salveaza</button>
+</form>
+
+
+{%endblock%}

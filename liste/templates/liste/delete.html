@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<h1 class="display-4">Stergerea Comenzii</h1>
+
+<form action="" method="post">{%csrf_token%}
+  <p>Esti sigur ca doresti sa stergi:" {{object.name}};<br>{{object.content}};<br>{{object.created_on}}"?</p>
+  <input type="submit" value="Confirm">
+</form>
+
+
+
+{%endblock%}

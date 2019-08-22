@@ -1,0 +1,16 @@
+{%extends 'base.html'%}
+{%block content%}
+
+<h1 class="display-4" >Login</h1>
+<form action="" method="post"">{%csrf_token%}
+<div class="form-row">
+  <div class="col-md-5 mb-2">
+    {{ form.as_p}}
+  </div>
+</div>
+
+  <button class="btn btn-primary my-4" type="submit">Intra</button>
+</form>
+
+
+{%endblock%}
